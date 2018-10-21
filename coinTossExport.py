@@ -2,7 +2,7 @@ import random
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
+# function that randomizes a coin toss by however many times user enters. (no error checking built in)
 def coin_toss():
     heads = 0
     tails = 0
@@ -27,18 +27,16 @@ def coin_toss():
 
     return heads, tails
 
-
+# logic to keep the coin flips going. No error checking built in beyond a Yy or Nn input.
 flip_again = True
 toss_data_heads = []
 toss_data_tails = []
 
 while flip_again == True:
     roll = coin_toss()
-#   print (roll) used during build for testing
-    head_count = roll[0]
+    head_count = roll[0]  # This line and the one below extract from the tuple returned from the function
     tail_count = roll[1]
 
-#    print(f"{toss_data_heads} for heads and {toss_data_tails} for tails.") used to test output
     more = input("Flip again? (Y or N): ")
 
     if more == "Y" or more == "y":
@@ -69,7 +67,7 @@ df.to_csv('coinResults.csv', index=False, header=True)
 Location = r'C:\Users\TxCav\desktop\pythonCode\practice\coinResults.csv'
 df = pd.read_csv(Location)
 
-ax = df.plot(kind= 'bar', title = "Heads or Tails", figsize= (15, 10), legend= True, fontsize= 14)
+ax = df.plot(kind= 'line', title = "Heads or Tails", figsize= (15, 10), legend= True, fontsize= 14)
 plt.show()
 
 
