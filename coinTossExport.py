@@ -1,5 +1,6 @@
-import pandas as pd
 import random
+import pandas as pd
+import matplotlib.pyplot as plt
 
 
 def coin_toss():
@@ -33,11 +34,11 @@ toss_data_tails = []
 
 while flip_again == True:
     roll = coin_toss()
-    #print (roll)
+#   print (roll) used during build for testing
     head_count = roll[0]
     tail_count = roll[1]
 
-#    print(f"{toss_data_heads} for heads and {toss_data_tails} for tails.") used to test ouput
+#    print(f"{toss_data_heads} for heads and {toss_data_tails} for tails.") used to test output
     more = input("Flip again? (Y or N): ")
 
     if more == "Y" or more == "y":
@@ -64,6 +65,12 @@ print(CoinDataSet)
 df = pd.DataFrame(data= CoinDataSet, columns=['Heads', 'Tails'])
 df.to_csv('coinResults.csv', index=False, header=True)
 
+# open data to a chart, change bar to line for different look
+Location = r'C:\Users\TxCav\desktop\pythonCode\practice\coinResults.csv'
+df = pd.read_csv(Location)
+
+ax = df.plot(kind= 'bar', title = "Heads or Tails", figsize= (15, 10), legend= True, fontsize= 14)
+plt.show()
 
 
 
